@@ -12,19 +12,21 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using NUnit.POM;
 using System.IO;
+using NUnit.Framework.Interfaces;
 
 namespace NUnit.Steps
 {
     [Binding]
     class Preview
     {
-        IWebDriver currentDriver = new ChromeDriver();
-        FileListPage fileListPage = new FileListPage();
+        static IWebDriver currentDriver;
+        static FileListPage fileListPage;
 
         [BeforeFeature]
         public static void setup()
         {
-
+            currentDriver = new ChromeDriver();
+            fileListPage = new FileListPage();
         }
 
 

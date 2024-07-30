@@ -19,13 +19,16 @@ namespace NUnit.Steps
     [Binding]
     class NewTab
     {
-        IWebDriver currentDriver = new ChromeDriver();
-        FileListPage fileListPage = new FileListPage();
-        Login loginPage = new Login();
+        static IWebDriver currentDriver;
+        static FileListPage fileListPage;
+        static Login login;
+
         [BeforeFeature]
         public static void setup()
         {
-
+            login = new Login();
+            currentDriver = new ChromeDriver();
+            fileListPage = new FileListPage();
         }
 
         [Given(@"I have logged in")]
@@ -34,7 +37,7 @@ namespace NUnit.Steps
             currentDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             currentDriver.Navigate().GoToUrl("https://fenixshare.anchormydata.com/fenixpyre/s/669ff2910e5caf9f73cd28ea/QA%2520Assignment");
 
-            loginPage.LoginToWebsite(currentDriver, "hammadbangash.1@gmail.com");
+            login.LoginToWebsite(currentDriver, "hammadbangash.1@gmail.com");
 
              var wait = new WebDriverWait(currentDriver, new TimeSpan(0, 0, 30));
             var element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlMatches("https://fenixshare.anchormydata.com/fenixpyre/s/669ff2910e5caf9f73cd28ea/QA%20Assignment"));

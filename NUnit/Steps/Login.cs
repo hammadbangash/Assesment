@@ -19,13 +19,16 @@ namespace NUnit.Steps
     [Binding]
     class LoginToWebsite
     {
-        IWebDriver currentDriver = new ChromeDriver();
-        FileListPage fileListPage = new FileListPage();
-        Login login = new Login();
+        static IWebDriver currentDriver;
+        static FileListPage fileListPage;
+        static Login login;
 
         [BeforeFeature]
         public static void setup()
         {
+            currentDriver = new ChromeDriver();
+            fileListPage = new FileListPage();
+            login = new Login();
         }
 
         [Given(@"I have navigated to the website")]
