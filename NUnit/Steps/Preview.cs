@@ -59,7 +59,7 @@ namespace NUnit.Steps
             if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
                 Screenshot result = ((ITakesScreenshot)currentDriver).GetScreenshot();
-                result.SaveAsFile(Path.Combine(Directory.GetCurrentDirectory(), "login-" + (new Random().Next(1, 101).ToString()) + ".png"));
+                result.SaveAsFile(Path.Combine(Directory.GetCurrentDirectory(), "failures/login-" + (new Random().Next(1, 10001).ToString()) + ".png"));
 
 
             }
